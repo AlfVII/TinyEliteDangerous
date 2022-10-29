@@ -27,14 +27,14 @@ const schema = Yup.object().shape({
 
 <template>
 
-        <div class="container marketing">
+        <div class="container">
             <div class="row">
                 <div class="col-lg-1">
                 </div>
                 <div class="col-lg-10 text-center">
                     <h1 class="text-white my-5">Welcome to Tiny Elite Dangerous</h1>
                     <h2 class="text-white my-5">A tiny implementation of Elite Dangerous using Vue.js and Tinybird</h2>
-                    <h4 class="text-white my-5">by AlfVII <a href="/"/></h4>
+                    <h4 class="text-white my-5">by <a href="https://github.com/AlfVII/TinyEliteDangerous">AlfVII </a> </h4>
                     <img src="/images/logo.webp" width="30%" height="auto" href="/" class="d-inline-block align-top mr-2" alt="">
                 </div>
                 <div class="col-lg-1">
@@ -54,7 +54,9 @@ const schema = Yup.object().shape({
           placeholder="Your Name"
           success-message="Nice to meet you!"
         />
-        <button class="btn text-primary bg-light submit-btn" type="submit">Launch!</button>
+        <div class="d-flex justify-content-center">
+              <button class="btn text-primary bg-light submit-btn" type="submit">Launch!</button>
+        </div>
       </Form>
   </div>
 </template>
@@ -93,7 +95,7 @@ form {
   font-size: 18px;
   padding: 10px 15px;
   display: block;
-  width: 100%;
+  width: 50%;
   border-radius: 7px;
   margin-top: 40px;
   transition: transform 0.3s ease-in-out;

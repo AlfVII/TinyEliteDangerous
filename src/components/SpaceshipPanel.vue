@@ -33,10 +33,6 @@ time.setSeconds(time.getSeconds() + 1);
 const timer = useTimer(time, false);
 
 
-const closestStarSubType = ref(null)
-const closestStar = ref(null)
-
-
 export default {
     components: {
         "vue3-slider": slider,
@@ -98,7 +94,6 @@ export default {
                 }
             })
             .then(response => {
-                console.log(response.data)
                 var bodies
                 if (response.data.data.length == 0) {
                     bodies = [{'bodyId': 0, 'name': this.closestStar, 'type': 'Star', 'subType': this.closestStarSubType, 'orbitRadius': 0, 'radius': 696339.9679613516}]
@@ -110,7 +105,6 @@ export default {
                     jsonValue = jsonValue.replaceAll("\{\'", "\{\"")
                     bodies = JSON.parse(jsonValue)
                 }
-                console.log(bodies)
                 const data = {name: this.closestStar, bodies: bodies, currentSpacePosition: this.camera.camera.position}
                 this.$emit("enterSystem", data)
 
@@ -121,6 +115,8 @@ export default {
     },
     data() {
         return {
+            closestStarSubType: null,
+            closestStar: null,
             sliderConf: {
                 orientation: "vertical",
                 max: 1,

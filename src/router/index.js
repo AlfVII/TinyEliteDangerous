@@ -7,9 +7,9 @@ const routes = [
     component: Home
   },
   {
-    path: '/tinyElitedangerous',
-    name: 'Scene',
-    component: () => import('../views/Scene.vue')
+    path: '/game',
+    name: 'Game',
+    component: () => import('../views/Game.vue')
   },
   {
     path: '/demo',

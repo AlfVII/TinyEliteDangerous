@@ -116,7 +116,7 @@ export default {
             this.closestDistanceToBody = distance
         },
         gravityFactor() {
-            const factor = Math.max(0.001, Math.min(1, this.closestDistanceToBody / 10000))
+            const factor = Math.max(0.001, Math.min(1, this.closestDistanceToBody / 1000))
             return factor
         },
         tryStart() {

@@ -81,17 +81,17 @@ export default {
 <template>
     <nav class="navbar navbar-expand-lg bg-light navbar-dark text-primary mb-2" id="header_wrapper">
         <div class="container-fluid">
-            <img src="/images/logo.webp" width="40" height="auto" href="/" class="d-inline-block align-top me-4" alt="">
+            <img src="/images/logo.webp" width="40" height="35" href="/" class="d-inline-block align-top me-4" alt="">
             <a class="navbar-brand text-primary" href="/">TinyEliteDangerous</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon navbar-primary"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-<!--                     <li class="nav-item">
-                        <router-link class="nav-link text-primary" to="/roadmap">Roadmap</router-link>
-                    </li>
                     <li class="nav-item">
+                        <router-link class="nav-link text-light bg-primary float-end" to="/game">Start new game!</router-link>
+                    </li>
+<!--                     <li class="nav-item">
                         <router-link class="nav-link text-primary" to="/musings">Alf's Musings</router-link>
                     </li> -->
                 </ul>

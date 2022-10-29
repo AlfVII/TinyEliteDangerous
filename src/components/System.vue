@@ -141,8 +141,7 @@ export default {
         const camera = this.$refs.camera;
         stateStore.setCamera(camera)
 
-        // const light = new PointLight( Utils.starColors[this.systemBodies[0]['subType']], 1, 100 );
-        const light = new PointLight( "#ffffff", 1 );
+        const light = new PointLight( "#ffffff", 0.5 );
         light.position.set( 0, 0, 0 );
         scene.add( light );
 
@@ -220,10 +219,10 @@ export default {
             <Scene ref="scene">
                 <!-- <AmbientLight :intensity="1"/> -->
                 <AmbientLight :intensity="0.01"/>
-<!--                 <Body v-for="item, index in systemBodiesNoSatellites"
-                            :data="item"/> -->
+                <Body v-for="item, index in systemBodiesNoSatellites"
+                            :data="item"/>
             </Scene>
-            <SpaceshipSystem :systemBodies="systemBodiesNoSatellites" :systemName="systemName" :userName="userName" @exitSystem="$emit('exitSystem')" @onSpaceshipsInfo="onSpaceshipsInfo" :maximumSpeed="200" :minimumSpeed="-200" :acceleration="1" :fogFar="farthestBodyDistance * 2"/>
+            <SpaceshipSystem :systemBodies="systemBodiesNoSatellites" :systemName="systemName" :userName="userName" @exitSystem="$emit('exitSystem')" @onSpaceshipsInfo="onSpaceshipsInfo" :maximumSpeed="30" :minimumSpeed="-30" :acceleration="0.5" :fogFar="farthestBodyDistance * 2"/>
         </div>
     </Renderer>
 </template>
