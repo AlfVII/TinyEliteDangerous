@@ -44,7 +44,7 @@ const schema = Yup.object().shape({
     <Form class="mt-4" @submit="onSubmit" :validation-schema="schema" @invalid-submit="onInvalidSubmit"> 
         <TextInput name="name" type="text" label="Introduce your name, Commander" placeholder="Your Name" success-message="Nice to meet you!"/>
         <div class="d-flex justify-content-center">
-            <button class="btn text-primary bg-light submit-btn" type="submit">Launch!</button>
+            <button class="btn text-primary bg-light submit-btn" type="submit">Take off and good luck! o7</button>
         </div>
     </Form>
 </template>
