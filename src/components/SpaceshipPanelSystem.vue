@@ -141,12 +141,12 @@ export default {
 
 
 <template>
-    <div class="container-flex text-white mx-2 mt-2 row">
-            <textarea ref="systemsConsole" class="col-2" id="systemsConsole" style="height: 11vh; background-color: black;color: green;" rows="5" disabled>Nearby systems</textarea>
+    <div class="container-flex text-primary mx-2 mt-2 row">
+            <textarea ref="systemsConsole" class="col-2" id="systemsConsole" style="height: 11vh; background-color: black; color: var(--bs-success);" rows="5" disabled>Nearby systems</textarea>
             <div class="col-2" >
                 <label class="fs-5 ms-3">Distance to Star:</label>
                 <div></div>
-                <label class="fs-5 ms-1 bg-dark text-white" style="width: 100%; max-width: 100px; text-align:right;"><slot name="distanceToStar"></slot></label>
+                <label class="fs-5 ms-1 bg-dark text-primary" style="width: 100%; max-width: 100px; text-align:right;"><slot name="distanceToStar"></slot></label>
                 <label class="fs-5 ms-2 me-4" style="width: 10px;">{{'Mm'}}</label>
             </div>
 
@@ -155,7 +155,7 @@ export default {
             </div>
 
             <div class="col-1" >
-                <button class="btn bg-light text-white text-center" @click="exitSystem">{{"Exit system " + systemName}}</button>
+                <button class="btn bg-light text-primary text-center" @click="exitSystem">{{"Exit system " + systemName}}</button>
             </div>
 
             <div class="col-2 row" >
@@ -174,11 +174,11 @@ export default {
             <div class="col-2" >
                 <label class="fs-5 ms-3">Relative Velocity:</label>
                 <div></div>
-                <label class="fs-5 ms-3 bg-dark text-white" style="width: 100%; max-width: 100px; text-align:right;"><slot name="relativeVelocity"></slot></label>
+                <label class="fs-5 ms-3 bg-dark text-primary" style="width: 100%; max-width: 100px; text-align:right;"><slot name="relativeVelocity"></slot></label>
                 <label class="fs-5 ms-2 me-4" style="width: 10px;">{{'Mm/s'}}</label>
             </div>
 
-            <label  class="col-2" id="explorers_console" style="height: 11vh; background-color: black;color: green;" rows="5" disabled><pre><slot name="nearbyExplorers"></slot></pre></label>
+            <label  class="col-2" id="explorers_console" style="height: 11vh; background-color: black; color: var(--bs-success);" rows="5" disabled><pre><slot name="nearbyExplorers"></slot></pre></label>
     </div>
 </template>
 

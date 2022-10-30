@@ -89,7 +89,7 @@ export default {
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <router-link class="nav-link text-light bg-primary float-end" to="/game">Start new game!</router-link>
+                        <router-link class="nav-link text-light bg-primary" to="/game">Start new game!</router-link>
                     </li>
 <!--                     <li class="nav-item">
                         <router-link class="nav-link text-primary" to="/musings">Alf's Musings</router-link>

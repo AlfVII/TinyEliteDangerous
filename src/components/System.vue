@@ -55,7 +55,7 @@ export default {
     },
     data() {
         return {
-            startingDistance: 400,
+            startingPosition: { x: 0, y: 0 , z: 400 },
             farthestBodyDistance: 0,
             spaceshipInfo: {},
             lastRenderTime: 0
@@ -110,14 +110,11 @@ export default {
             }
         },
         onSpaceshipsInfo(data) {
-            // data['position'] = {x: 0, y: 0, z: this.startingDistance - 10}
             if (data['user'] in this.spaceshipInfo) {
                 this.updateShip(data)
             }
             else {
                 SpaceshipModel.loadSpaceship(data).then((result) => {
-                    console.log("result loadSpaceship")
-                    console.log(result["spaceship"])
                     const scene = this.$refs.scene;
                     scene.add( result["spaceship"]);
                     this.spaceshipInfo[data['user']] = {
@@ -162,52 +159,13 @@ export default {
             const timeSinceLastRender = performance.now() - this.lastRenderTime
             this.lastRenderTime = performance.now()
             for (const [user, data] of Object.entries(this.spaceshipInfo)) {
-                // console.log(data['target'])
-                // console.log(data['direction'])
                 const camera = this.$refs.camera;
-                // data.object.lookAt(new Vector3(data['target'].x, data['target'].y, data['target'].z))
                 data.object.lookAt(data['target'])
-                // console.log(data.object)
-                // data.object.position.z -= data['direction'].z * data['speed'] / 100 * timeSinceLastRender
                 data.object.position.x += data['direction'].x * data['speed'] / 100 * timeSinceLastRender
                 data.object.position.y += data['direction'].y * data['speed'] / 100 * timeSinceLastRender
                 data.object.position.z += data['direction'].z * data['speed'] / 100 * timeSinceLastRender
             }
         })
-
-
-        // loader.load( '/images/tie_fighter.glb', ( gltf ) => {
-        //     console.log( "gltf");
-        //     console.log( gltf);
-        //     var ship = gltf.scene
-        //     console.log( "ship");
-        //     scene.add( gltf.scene );
-        //     console.log( ship);
-        //     ship.position.set(1100, -20.5, -10);
-
-        // },  ( xhr ) => {
-
-        //     console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-
-        // }, ( error ) => {
-
-        //     console.error( error );
-
-        // } );
-
-        console.log(this.$refs.scene.scene)
-        // console.log(this.farthestBodyDistance)
-        // this.$refs.scene.scene.children.forEach((item, index) => {
-        //     if (item.material != null) {
-        //         if (item.material.map != null) {
-        //             console.log(item.material.map)
-        //             renderer.renderer.initTexture(item.material.map)
-        //         }
-        //     }
-
-        // })
-
-
     },
 };
 </script>
@@ -215,7 +173,7 @@ export default {
 <template>
     <Renderer ref="renderer" resize=true shadow>
         <div ref="spaceScene">
-            <Camera ref="camera" :near="0.01" :far="farthestBodyDistance * 1.5" :position="{ x: 0, y: 0 , z: startingDistance }"/>
+            <Camera ref="camera" :near="0.01" :far="farthestBodyDistance * 1.5" :position="startingPosition"/>
             <Scene ref="scene">
                 <!-- <AmbientLight :intensity="1"/> -->
                 <AmbientLight :intensity="0.01"/>

@@ -92,7 +92,7 @@ export default {
                     canvas.height = 512;
                     var ctx = canvas.getContext("2d");
                     ctx.font = "44pt Arial";
-                    ctx.fillStyle = "white";
+                    ctx.fillStyle = "#d95d06";
                     ctx.textAlign = "center";
                     ctx.fillText(this.data["name"], 256, 44);
                     var tex = new Texture(canvas);
@@ -103,17 +103,14 @@ export default {
                     var sprite = new Sprite(spriteMat);
                     body.add(sprite);
 
-                    console.log("Drawing line at: " + this.getOrbit)
                     let g = new BufferGeometry().setFromPoints(
                         new Path().absarc(0, 0, Math.round(this.getOrbit) , 0, Math.PI * 2).getSpacedPoints(512)
                     );
                     let m = new LineBasicMaterial({color: "aqua", linewidth: 10000});
                     let l = new Line(g, m);
                     l.rotation.x = Math.PI / 2;
-                    console.log("this.orbitLine")
                     this.scene.add(l);
                     this.orbitLine = l
-                    console.log(this.orbitLine)
                 }
 
                 const factorAngle = (this.data["radius"] * this.data["orbitRadius"]) % Math.PI
@@ -141,7 +138,7 @@ export default {
             return this.data['name'] + "Material"
         },
         getOrbit() {
-            return this.data["orbitRadius"]
+            return this.data["orbitRadius"] + this.data["radius"]
         },
     },
     mounted() {

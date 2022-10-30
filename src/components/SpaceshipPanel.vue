@@ -14,6 +14,7 @@ import joystick from '/src/components/Joystick.vue'
 const stateStore = useStateStore()
 const spaceshipStatus = ref(0);
 const systemsConsole = ref(null);
+const explorersConsole = ref(null);
 const joyStick = ref(null);
 
 const style = getComputedStyle(document.body);
@@ -34,6 +35,12 @@ const timer = useTimer(time, false);
 
 
 export default {
+    props: {
+        userName: {
+            type: String,
+            required: true,
+        },
+    },
     components: {
         "vue3-slider": slider,
         "vue3-joystick": joystick,
@@ -75,6 +82,25 @@ export default {
                 else {
                     this.closestStar = null
                 }
+            })
+            .catch(error => {
+            });
+        },
+        requestOnlineUsers() {
+            axios.get('https://api.tinybird.co/v0/pipes/OnlineUsersAllSystems.json', {
+                params: {
+                    'myUser': this.userName
+                },
+                headers: {
+                    'Authorization': 'Bearer p.eyJ1IjogImUwYjU5OTlmLTYwMWItNDMxNy1hMjQyLTM3YTI5NzRhZTUzZCIsICJpZCI6ICIwZGMyZTJhMC1jMTUzLTQyZjItYjhkOS1iZWRhNjY0YTY0ZmQifQ.ew2u1mWQNay899xuWW7FHXcPRk2vniLQ3C1r36FyC2o'
+                }
+            })
+            .then(response => {
+                explorersConsole.value.innerHTML = "Nearby explorers:\n"
+                response.data.data.forEach((item, index) => {
+                    explorersConsole.value.innerHTML = explorersConsole.value.innerHTML + item["user"] + " at system " + item["system_name"] + "\n"
+                });
+
             })
             .catch(error => {
             }); 
@@ -161,6 +187,7 @@ export default {
                 if (this.camera != null) {
                     const userPosition = this.camera.camera.position;
                     this.requestReallyCloseStars(10, userPosition)
+                    this.requestOnlineUsers()
                 }
                 time.setSeconds(time.getSeconds() + 1);
                 timer.restart(time);
@@ -175,12 +202,12 @@ export default {
 
 
 <template>
-    <div class="container-flex text-white mx-2 mt-2 row">
-            <textarea ref="systemsConsole" class="col-2" id="systemsConsole" style="height: 11vh; background-color: black;color: green;" rows="5" disabled>Nearby systems</textarea>
+    <div class="container-flex text-primary mx-2 mt-2 row">
+            <textarea ref="systemsConsole" class="col-2" id="systemsConsole" style="height: 11vh; background-color: black; color: var(--bs-success) ;" rows="5" disabled>Nearby systems</textarea>
             <div class="col-2" >
                 <label class="fs-5 ms-3">Distance to Earth:</label>
                 <div></div>
-                <label class="fs-5 ms-1 bg-dark text-white" style="width: 100%; max-width: 50px; text-align:right;"><slot name="distanceToEarth"></slot></label>
+                <label class="fs-5 ms-1 bg-dark text-primary" style="width: 100%; max-width: 50px; text-align:right;"><slot name="distanceToEarth"></slot></label>
                 <label class="fs-5 ms-2 me-4" style="width: 10px;">{{'ly'}}</label>
             </div>
 
@@ -190,7 +217,7 @@ export default {
 
 
             <div class="col-1" >
-                <button class="btn bg-light text-white text-center" :disabled="closestStar == null" @click="loadSystem">{{closestStar == null? "Too far away" : "Enter system " + closestStar}}</button>
+                <button class="btn bg-light text-primary text-center" :disabled="closestStar == null" @click="loadSystem">{{closestStar == null? "Too far away" : "Enter system " + closestStar}}</button>
             </div>
 
             <div class="col-2 row" >
@@ -209,11 +236,11 @@ export default {
             <div class="col-2" >
                 <label class="fs-5 ms-3">Relative Velocity:</label>
                 <div></div>
-                <label class="fs-5 ms-3 bg-dark text-white" style="width: 100%; max-width: 40px; text-align:right;"><slot name="relativeVelocity"></slot></label>
+                <label class="fs-5 ms-3 bg-dark text-primary" style="width: 100%; max-width: 40px; text-align:right;"><slot name="relativeVelocity"></slot></label>
                 <label class="fs-5 ms-2 me-4" style="width: 10px;">{{'ly/s'}}</label>
             </div>
 
-            <textarea  class="col-2" id="explorers_console" style="height: 11vh; background-color: black;color: green;" rows="5" disabled>Nearby explorers</textarea>
+            <textarea ref="explorersConsole" class="col-2" id="explorers_console" style="height: 11vh; background-color: black; color: var(--bs-success) ;" rows="5" disabled>Nearby explorers</textarea>
     </div>
 </template>
 

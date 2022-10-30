@@ -43,6 +43,10 @@ export default {
             required: false,
             default: 75
         },
+        userName: {
+            type: String,
+            required: true,
+        },
     },
     data() {
         return {
@@ -204,7 +208,7 @@ export default {
 </script>
 
 <template>
-    <SpaceshipPanel @onClosestDistance="onClosestDistance($event);">
+    <SpaceshipPanel :userName="userName" @onClosestDistance="onClosestDistance($event);">
         <template #distanceToEarth>
             {{distanceToEarth.toFixed(2)}}
         </template>

@@ -31,7 +31,6 @@ export default {
             systemName: null,
             inSystem: false,
             hasToIntroduceName: true,
-            // currentSpacePosition: { x: -9.3125, y: -3.03125, z: -3.20625 },
             currentSpacePosition: { x: 0, y: 0.05, z: 0.2 },
             userName: null,
         }
@@ -68,6 +67,6 @@ export default {
     <Header />
     <Welcome v-if="hasToIntroduceName" @onPlayerReady="onPlayerReady"/>
     <System v-else-if="inSystem" :systemBodies="systemBodies" :systemName="systemName" :userName="userName" @exitSystem="exitSystem"/>
-    <Space v-else :currentSpacePosition="currentSpacePosition" @enterSystem="enterSystem"/>
+    <Space v-else :currentSpacePosition="currentSpacePosition" :userName="userName" @enterSystem="enterSystem"/>
 </template>
         

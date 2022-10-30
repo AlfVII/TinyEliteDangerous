@@ -1,7 +1,7 @@
 <style>
 .vue-joystick {
   display: inline-block;
-  background: white;
+  background: var(--bs-dark);
   height: 100px;
   width: 100px;
   border-radius: 50%;

@@ -30,6 +30,10 @@ export default {
             type: Object,
             required: true,
         },
+        userName: {
+            type: String,
+            required: true,
+        },
     },
     components: {
         Camera,
@@ -97,7 +101,6 @@ export default {
             })
             .then(response => {
                 const starsGrouped = this.groupData(response.data.data)
-                console.log(starsGrouped)
                 stateStore.setStarData(starsGrouped)
                 time.setSeconds(time.getSeconds() + 1);
                 timer.start(time);
@@ -146,7 +149,7 @@ export default {
                 <RenderPass />
                 <UnrealBloomPass :strength="2" />
             </EffectComposer>
-            <Spaceship @enterSystem="$emit('enterSystem', $event)"/>
+            <Spaceship :userName="userName" @enterSystem="$emit('enterSystem', $event)"/>
         </div>
     </Renderer>
 </template>
