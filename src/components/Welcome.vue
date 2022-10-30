@@ -34,7 +34,7 @@ const schema = Yup.object().shape({
             <div class="col-lg-10 text-center">
                 <h1 class="text-white my-5">Welcome to Tiny Elite Dangerous</h1>
                 <h2 class="text-white my-5">A tiny implementation of Elite Dangerous using Vue.js and Tinybird</h2>
-                <h4 class="text-white my-5">by <a href="https://github.com/AlfVII/TinyEliteDangerous">AlfVII </a> </h4>
+                <h4 class="text-white my-5">by AlfVII <a href="https://github.com/AlfVII/TinyEliteDangerous"> <i class="mx-1 fa-brands fa-github bd-placeholder-img rounded-circle text-primary" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" focusable="false"></i> </a> </h4>
                 <img src="/images/logo.webp" width="30%" height="auto" href="/" class="d-inline-block align-top mr-2" alt="">
             </div>
             <div class="col-lg-1">
